@@ -8,12 +8,29 @@
 </head>
 <body>
     <script>
-        var a = 5 ;
-        if( a == 5 ){
-            throw new Error('停止赋值！');//控制台报错：停止赋值
-        };
-        let b=6;//let定义不能重复
+//        var a = 5 ;
+//        if( a == 5 ){
+//            throw new Error('停止赋值！');//控制台报错：停止赋值
+//        };
+
+
+        let b=6;
         console.log(b);
+
+
+        var x = 9;
+        function foo(){
+            console.log(x);
+//            let x=9;//let定义不能重复
+        };
+        foo();
+
+
+        for(let i=0; i<3; i++){
+            console.log(i);
+        }
+//        let i = 5;
+//        console.log(i);
     </script>
 </body>
 </html>
