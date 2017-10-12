@@ -2,9 +2,79 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>变量的解构赋值</title>
 </head>
 <body>
+    <script>
+        let [a,b,c] = [1,2,3];//a,b,c分别对应1,2,3
+        console.log(a,b,c);
 
+
+        let [m,n,[t,p]] = [12,13,[15,16]];//等号前后形式必须相同
+        console.log(m,n,t,p);
+
+
+        let [x,[y],z] = [55,[66,77],88];//77不被接受，自动抛弃
+        console.log(x,y,z);
+
+
+        let [i=7,j] = [,8];//i默认值为7，j赋值为8
+        console.log(i,j);
+
+
+        function foo(){
+            console.log(123);
+        };
+        let [r=foo()] = [];//输出123
+
+
+        //对象解构：
+        let obj = {
+            name:"zhangsan",
+            age:19
+        };
+        let {name,age} = obj;
+        let {name:name1,age:age1} = obj;
+        console.log(name,age);
+        console.log(name1,age1);//给属性另外命名
+
+
+        //字符串解构：
+        let str = "hello";
+        let [s,w,h,k,l] = str;
+        console.log(s,w,h,k,l);
+
+
+        //参数解构：
+        function add([x=0,y=0]){//x,y默认值均为0
+            console.log(x+y);
+        }
+        let arr = [4,5];
+        add(arr);
+
+
+        function get({name="lisi",age=19,school="nefu"}){
+            console.log(name,age,school);
+        }
+        let obj1 = {
+            name:"zhangsan",
+            age:21,
+            school:"heida"
+        };
+        get(obj1);
+
+
+        function back(){
+            let arr1 = ["aa","bb","cc"];
+            return arr1;
+        }
+        let [o,q,v] = back();
+        console.log(o,q,v);
+
+
+        
+    </script>
 </body>
 </html>
