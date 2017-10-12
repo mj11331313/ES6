@@ -66,6 +66,7 @@
         get(obj1);
 
 
+        //方法返回数组：
         function back(){
             let arr1 = ["aa","bb","cc"];
             return arr1;
@@ -74,7 +75,50 @@
         console.log(o,q,v);
 
 
-        
+        //方法返回对象：
+        function stu(){
+            let obj={
+                name:"wang",
+                age:20
+            }
+            return obj;
+        }
+        let {name:aaa,age:bbb} = stu();
+        console.log(aaa,bbb);
+
+
+        //互换变量值：
+        //方法一：
+        var u= 5,u1=6;
+//        u1=u+u1;//u1=11
+//        u=u1-u;//u=6
+//        u1=u1-u;//u=6
+//        console.log(u,u1);
+
+        //方法二：
+        let ar = [u,u1];
+        u = [u1,u1=u][0];
+        console.log(u,u1);
+
+
+        //方法三：
+        var x1=5,x2=6;
+        var [x1,x2] = [x2,x1];
+        console.log(x1,x2);
+
+
+
+        //json解构
+        let json = '{"a1":"hello","b1":"world"}';
+        let object = JSON.parse(json); //先将字符串转换为对象
+        let {a1,b1} = object;
+        console.log(a1,b1);
+
+
+
+        let a3 = 2;
+        ({a3} = {a3:1});//后续修改变量值
+        console.log(a3);
     </script>
 </body>
 </html>
