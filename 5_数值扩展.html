@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>数值扩展</title>
+</head>
+<body>
+    <script>
+        let num1 = 5;
+        console.log((num1.toString(2)));//将数字转化为二进制；
+
+
+        let num2 = 101;
+        console.log(parseInt(num2,2));//将二进制数转化为十进制;
+
+
+        let num3 = 0B0101;// 0b 或 0B表示二进制
+        console.log(num3);
+
+
+        let num4 = 0O666;// 0o 或 0O表示八进制
+        console.log(num4);
+
+
+        console.log(Number.isFinite(5));// 判断是否为数字 返回布尔型
+        console.log(window.isNaN(NaN));//判断是否为NaN型数据；window.isNaN等价于Number.isNaN
+        console.log(Number.isInteger(5));//判断是否为整数；
+        console.log(Number.isSafeInteger(5));//判断是否为安全数字（在整数的最大与最小范围内）；
+        console.log(Math.sign(5));//判断数字正负：正数返回1，负数返回-1,0返回0
+    </script>
+</body>
+</html>
