@@ -15,12 +15,20 @@
     document.write(str);
 
 
+    //符号``里的内容为字符串模板，可将回车符转化为空格
     let a = 5, b = 6;
     let str1 = `asdfa
     sdfasfasdfasdfa
     sdfsadfs${arg}af<h1>5+6=${a+b}</h1>
-    daf`;
+    daf`;   //使用${}可在模板中插入变量并进行简单计算
     document.write(str1);
+
+
+    let str2 = '啊hello world';
+    console.log(str2.includes("h"));//检索字符串是否包含目标字符,结果为布尔值
+
+
+
 </script>
 </body>
 </html>
