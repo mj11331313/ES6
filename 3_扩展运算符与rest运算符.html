@@ -16,13 +16,45 @@
 
 
         //扩展运算符：
+        //1.接受参数：
         function fool1(...arg){
             console.log(arg);
         }
         fool1(7,8,9);
 
 
-        
+        //2.数组插入：
+        let arr1 = [1, 2];
+        let arr2 = [3,...arr1,4];
+        console.log(arr2);
+
+
+        //3.复制数组：
+        let ar1 = [11,22];
+        let ar2 = [...ar1];
+        ar1.push(33);
+        console.log(ar2);
+
+
+        //4.组合成为新数组：
+        let ara1 = [1,2],ara2=[3,4];
+        let ara3 = [...ara1,...ara2];
+        console.log(ara3);
+
+
+        //5.合并多个对象为一个数组：
+        function rebuilt(...arg){
+            console.log(arg);
+        }
+        let obj1 = {
+            name:"zhangsan",
+            age:16
+        };
+        let obj2 = {
+            name:"lisi",
+            age:17
+        };
+        rebuilt(obj1,obj2);
     </script>
 </body>
 </html>
