@@ -26,8 +26,33 @@
 
     let str2 = '啊hello world';
     console.log(str2.includes("h"));//检索字符串是否包含目标字符,结果为布尔值
+    console.log(str.startsWith('哦'));//判断字符串是否由目标字符开始；
+    console.log(str2.endsWith('world'));//判断字符串是否以目标字符结束
+
+    //startswith方法封装：
+    function sw(str, target){
+        if(str.indexOf(target) == 0){
+            return true;
+        }
+        return false;
+    }
+    console.log(sw(str2, '啊hello'));
 
 
+    //endswith方法封装：
+    function ew(str, target){
+        if(str.lastIndexOf(target) == str.length - target.length){//12-5
+            return true;
+        }
+        return false;
+    }
+    console.log(ew(str2, 'world'));
+
+
+    let str3 = 'xy';
+    console.log(str3.padStart(8, 'abc'));//重复abc,字符串总长度为8，最后添加xy
+    console.log(str3.padEnd(8, 'abc'));//最开始添加xy,重复abc，总长度为8
+    console.log(str3.repeat(5));//将字符串重复5次
 
 </script>
 </body>
