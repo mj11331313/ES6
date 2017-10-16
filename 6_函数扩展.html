@@ -5,8 +5,116 @@
     <title>函数扩展</title>
 </head>
 <body>
+    <div>000</div>
     <script>
-        
+        function add(x,y = 0){
+            return x+y;
+        }
+        add(5,6);
+        console.log(add.length);//函数名.length，返回其未设默认值的参数的个数
+
+        `use strict`;//由此开始进入严格模式（对代码语法规范要求严格）；
+        //1.构造函数必须用new的方式
+        function People(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        let p1 = new People("zhangsan",19);
+
+        //2.函数不能有同名参数：
+        /* function foo(a, a, c) {
+         console.log(a, a, c);
+         }
+         foo(4, 5, 6); */
+
+        //3.禁止使用with语句：
+        /* let a = 5;
+         let obj = {
+         a: 6
+         };
+         with(obj){
+         console.log(a);
+         } */
+
+        function foo (num) {
+            'use strict';//严格模式可局部使用
+            if(num == 1){
+                return 1;
+            }
+            //4.禁止使用arguments.callee()(递归中常用)
+//            return num * arguments.callee(num - 1);
+        }
+        console.log(foo(5));
+
+
+        //5.只要函数参数使用了默认值、解构赋值或扩展运算符，则不能在函数内部使用严格模式
+        /*function add1 (x=0, y) {
+         'use strict';
+         return x + y;
+         }
+         console.log(add1(5, 6));*/
+
+        /*function foo3([a, b, c, d, e]) {
+            'use strict';
+            console.log(a, b, c, d, e);
+        }
+        foo3([1, 2, 3, 4, 5]);*/
+
+
+
+        //箭头函数：箭头左边是参数（以及函数名，函数名可无），右边是函数体
+        let add2 = (x,y) => {return x+y};
+        console.log(add2(7,8));
+
+        let add3 = (x=0,y=0) =>{//给参数设默认值
+            let sum = x*3 + y;//sum为局部变量，不可全局访问
+            return sum;
+        }
+        console.log(add3(1,2));
+
+        let foo1 = (...arg) => console.log(arg);//rest运算符
+        foo1(1,2,3,4);
+
+        let obj = {
+            name:"zhangsan",
+            age:21
+        }
+        let con = ({name,age}) =>{//解构对象
+            console.log(name,age);//箭头函数不能使用arguments
+        }
+        con(obj);
+
+        //箭头函数不能用作构造函数：
+        /*let Person = (name,age) =>{
+            this.name = name;
+            this.age = age;
+        }
+        let p2 = new Person("lisi",19);*/
+
+        let oDiv = document.querySelector("div");
+        oDiv.addEventListener("click",function(){
+            console.log(this);
+            setTimeout(() =>{//一定时间后执行一次操作
+                console.log(this);//箭头函数内的this是定义时所绑定的对象
+            },1000);
+        });
+
+
+        let a=5;
+        var b=6;
+        console.log(window.a);//输出undefined:let定义的变量不是window的属性
+        console.log(window.b);//输出6
+        let obj4 = {
+            a:6,
+            foo:function(){
+                console.log(this);//this => obj4
+            },
+            foo2:()=>{
+                console.log(this);//this => window
+        }
+        }
+        obj4.foo();
+        obj4.foo2();
     </script>
 </body>
 </html>
