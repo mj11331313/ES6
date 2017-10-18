@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //symbol是一种数据类型，表示唯一的
+
+    let name = Symbol();
+    let obj1 = {
+        name:'zhangsan',
+        age:21
+    };
+    obj1[name] = 'lisi';
+    console.log(obj1.name);//输出"zhangsan"，原属性被保护没有被修改
+    console.log(obj1[name]);//获取想要重新赋的值
+</script>
+</body>
+</html>
