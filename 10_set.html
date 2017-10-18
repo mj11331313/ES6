@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let s1 = new Set([1,2,3,1]);
+    console.log(s1);//结果为{1,2,3}：set不允许有重复值
+
+    //可利用set的此种特性给数组去重：
+    let ar1 = [2,3,4,2,3];
+    let s2 = new Set(ar1);//将数组转化为set型
+    console.log(s2);
+
+
+    //向set中添加值：
+    s1.add(5);
+    console.log(s1);
+
+    //删除值：
+    s1.delete(1);
+    console.log(s1);
+
+
+    //全部删除，即清空：
+    /* s1.clear();
+     console.log(s1); */ //长度(size)变为0
+
+
+    //判断set中是否含有某一个值：
+    console.log(s1.has(5));
+
+
+    //获取set的长度：
+    console.log(s1.size);//长度是size不是length，且size是属性不是方法
+
+    //遍历set：for of 循环：
+    for(let item of s1){
+        console.log(item);//输出值
+    };
+    for( let [index,item] of s1.entries()){
+        console.log(`${index}:${item}`);//set的索引等于其对应值
+    };
+</script>
+</body>
+</html>
