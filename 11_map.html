@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var m1 = new Map();
+    m1.set('1','a');//"1"=>"a"
+    m1.set('1','x');//"1"被覆盖成功：map里的key唯一，值可覆盖
+    m1.set('2','b');//"2"=>"b"  key => value
+    let obj = {name:'zs'};
+    m1.set(obj,'c');//对象作为key
+    console.log(m1);//{obj}=>"c"
+    //map可存储任意类型的数据,部分方法与set一致
+
+    //获取key对应的值：
+    console.log(m1.get('1'));//获取"1"对应的值
+
+
+    //WeakMap:
+    let wm = new WeakMap();
+    wm.set({name:'wm'},'wm');//weakmap只允许对象作为key
+    console.log(wm);
+</script>
+</body>
+</html>
