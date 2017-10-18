@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let name = 'zhangsan';
+    let age = 18;
+
+    //方法一：
+    let obj1 = {
+        name,
+        age,
+    };
+    console.log(obj1);
+
+
+    //方法二：当属性名为变量时：
+    let nam = 'name';
+    let obj2 = {
+            [nam]:'lisi'  //[变量名]
+    };
+    console.log(obj2);
+
+
+    //方法三：当对象属性是一个方法时：
+    let nam3 = 'zhangsan3';
+    let obj3 = {
+        nam3,
+        coding(){ //注意方法名书写方式
+        console.log('coding')
+    }
+    };
+    obj3.coding();//调用对象下的方法
+
+
+    console.log(NaN == NaN);//两个等号和三个等号都是false
+    console.log(+0 === -0);//同上
+
+    console.log(Object.is(+0,-0));//输出false
+    console.log(Object.is(NaN,NaN));//输出true;Object.is()相当于===的作用；
+
+
+    //方法四：合并对象：
+    let object1 = {
+        name:'sam',
+        age:20
+    };
+    let Object2 = {
+        school:'nefu',
+        parent:{
+            father:'dad',
+            mother:'mom'
+        }
+    };
+    Object.assign(object1,Object2);
+    Object2.parent.father = 'Dad';//先合并再修改
+    console.log(object1);//输出Dad，即改变后的值=>Object.assign()浅拷贝:指针，没有开辟新内存
+
+
+    //方法五：判断对象是否包含某属性：
+    console.log('school' in Object2);//'属性名' in 对象
+
+    let arr = [3,4,5];
+    console.log(3 in arr);//判断某下标对应位置是否有数据
+</script>
+</body>
+</html>
