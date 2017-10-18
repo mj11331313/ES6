@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>数组扩展</title>
+</head>
+<body>
+
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+
+    <script>
+        //1.将json对象转化为数组
+        let json = {
+            "0":"zhangsan",
+            "1":14,
+            length:2
+        };
+        console.log(Array.from(json));
+
+
+        //2.将类数组转化为数组：
+        let aDiv = document.querySelectorAll("div");
+        let [div1,div2,div3] = [...aDiv];//方法一
+        let arr2 = Array.from(aDiv);//方法二
+        let arr3 = [].slice.call(aDiv);//方法三
+        let arr4 = Array.prototype.slice.call(aDiv);//方法四
+        console.log(arr2,arr3,arr4);
+//        console.log(arr2.constructor);
+
+
+        //3.复合型数组：
+        let ar1 = Array.of("hello",12,true,{name:"zhang"});
+        console.log(ar1);
+
+
+        let ar2 = [1,2,3,4,5];
+        console.log(ar2.copyWithin(1,2,4));
+        /*从下标为2的位置开始，到下标为4的位置结束（不包括4），
+        将这一段数据复制到下标为2的位置上;*/
+
+
+        console.log(
+                ar2.find((val,key,arr) => {//val:数值；key:下标；arr:整个数组对象
+                    if(val >3){
+                        return val;//返回第一个满足条件的值
+                    }
+        })
+        );
+
+
+        ar2.fill("233",2,4);//从下标2开始，到4结束（不包括4），用“233”填充
+        console.log(ar2);
+        //4.fill方法可用于初始化数组：
+        let ar3 = new Array(4).fill(0);
+        console.log(ar3);
+
+
+        console.log(ar2.indexOf(2));//返回下标(未找到返回-1)；
+        console.log(ar2.includes(2));//返回true或false;
+
+
+        //5.遍历数组：
+        let ar4 = ["a","b","c","d"];
+        //方法一：
+        for(let p in ar4){
+            console.log(ar4[p]);//p为下标
+        }
+        //方法二：
+        ar4.forEach((val,key,arr) => {
+            console.log( key + ":" + val);
+        })
+        //方法三：
+        for(let item of ar4){
+            console.log(item);//item为元素值
+        }
+        //方法四：
+        for(let item of ar4.keys()){
+            console.log(item);//item为下标
+        }
+        //方法五：
+        for(let [index,item] of ar4.entries()){
+            console.log(index + ":" + item);//index为下标，item为元素值
+        }
+        //方法六：
+        ar4.map((val,key,arr) => {
+            console.log(key + "=>" + val);
+        })
+
+
+
+
+        //6.手动循环：
+        let list = ar4.entries();
+        console.log(list.next().value);
+        console.log(list.next().value);
+        console.log(list.next().value);
+    </script>
+</body>
+</html>
