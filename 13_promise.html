@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $.get('product.json',{//get:向后台发送请求; url：目的地址
+        userid:1 //向服务器发送的数据
+    },function(res){//response:后台对请求的返回值，前端用以判断成功或失败,需前后端约定
+
+    },'json');//后端返回数据的类型
+</script>
+</body>
+</html>
