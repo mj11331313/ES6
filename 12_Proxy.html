@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //钩子函数：用于过滤用户的操作
+    var pro = new Proxy({
+        name:'lisi',
+        age:19
+    },{
+        get:(target,key,property) =>{//get方法：在获取属性值之前进行的操作
+            console.log('get');
+            /* console.log(target); //target为当前对象pro
+             console.log(key);//key为要获取的属性名
+             console.log(property); *///property为Proxy对象
+            return target[key];//返回对象的属性值
+        },
+        set:(target,key,value,receiver) => {//set方法：在设置属性值之前进行的操作
+            console.log('set');
+            return target[key]=value;//赋值，并返回新的属性值
+        }//value:新的属性值；receiver:Proxy对象
+    });
+    pro.name = 'zhangsan';//设置属性值,要成功设置值，必须在set里写
+    console.log(pro.name);//获取属性前会先执行get方法,要成功获取必须在get方法里写return target[key]
+
+
+    //在执行对象的方法之前进行某些操作：
+    let target = () =>{//定义方法
+        console.log('target');
+    };
+    let handler = {
+        apply(target,ctx,args){//ctx:上下文
+        console.log('apply');
+        return Reflect.apply(...arguments);//固定写法
+    }
+    };
+    let pro1 = new Proxy(target,handler);
+    pro1();
+</script>
+</body>
+</html>
