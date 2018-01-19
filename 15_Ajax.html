@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1"></div>
+    <script>
+        // AJAX原理：
+
+        // 1.创建对象：
+        var xmlhttp;
+        if(window.XMLHttpRequest){// 兼容 IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }else{// 兼容 IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        // 2.向服务器发送请求：
+        xmlhttp.open('GET','text.txt',true); // 向text.txt文件发送异步的get请求
+        xmlhttp.send();
+        // 3.服务器响应：
+        xmlhttp.onreadystatechange = function(){
+            if( xmlhttp.readyState == 4 && xmlhttp.status == 200 ){
+                document.getElementById("#div1").innerHTML = xmlhttp.responseText;
+            }
+        };
+
+        // chrome浏览器不支持file协议
+    </script>
+</body>
+</html>
