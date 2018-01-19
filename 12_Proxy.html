@@ -7,40 +7,65 @@
     <title>Document</title>
 </head>
 <body>
-<script>
-    //钩子函数：用于过滤用户的操作
-    var pro = new Proxy({
-        name:'lisi',
-        age:19
-    },{
-        get:(target,key,property) =>{//get方法：在获取属性值之前进行的操作
-            console.log('get');
-            /* console.log(target); //target为当前对象pro
-             console.log(key);//key为要获取的属性名
-             console.log(property); *///property为Proxy对象
-            return target[key];//返回对象的属性值
-        },
-        set:(target,key,value,receiver) => {//set方法：在设置属性值之前进行的操作
-            console.log('set');
-            return target[key]=value;//赋值，并返回新的属性值
-        }//value:新的属性值；receiver:Proxy对象
-    });
-    pro.name = 'zhangsan';//设置属性值,要成功设置值，必须在set里写
-    console.log(pro.name);//获取属性前会先执行get方法,要成功获取必须在get方法里写return target[key]
+    <script>
+        //Proxy:用来拦截在一个对象上的指定操作
+
+        var pro = new Proxy({
+            name : 'lisi',
+            age: 18
+        }, {
+            // 每次获取当前对象属性值之前都会执行get方法：
+            get: (target, key, property) => {
+                //target:目标对象   property:所要访问的属性
+                console.log('get');
+                return target[key];
+            },
+            // 每次对当前对象属性设置值之前都会执行set方法：
+            set: (target, key, value, receiver) => {
+                console.log('set');
+                return target[key] = value;
+            }
+        });
+        pro.name = 'zhangsan';
+        console.log(pro.name);  // 输出set get lisi
 
 
-    //在执行对象的方法之前进行某些操作：
-    let target = () =>{//定义方法
-        console.log('target');
-    };
-    let handler = {
-        apply(target,ctx,args){//ctx:上下文
-        console.log('apply');
-        return Reflect.apply(...arguments);//固定写法
-    }
-    };
-    let pro1 = new Proxy(target,handler);
-    pro1();
-</script>
+        // 函数也是一个对象
+
+        let target = () => {
+            console.log('target fn');
+            // return 'target fn';
+        };
+        let handler = {
+            apply(target, ctx, args){  // apply:拦截Proxy实例作为函数调用的操作
+                console.log('apply');
+                return Reflect.apply(...arguments);
+                /* 
+                ...arguments表示target、ctx、args
+                Reflect.apply(...arguments)相当于Reflect.apply(target, ctx, args)
+                表示调用target函数，并且将target函数内部的this改变为ctx，同时给函数传参为args*/
+            }
+        };
+        let pro2 = new Proxy(target, handler);
+        pro2(); // 输出apply target fn
+
+
+        /* 参数说明：
+        target：所要拦截的目标对象，即如果没有Proxy的介入，操作原来要访问的就是这个对象；
+        handler：也是一个对象，用来定制拦截行为。
+
+
+        代理的行为很简单：将代理的所有内部方法转发至目标。
+        简单来说，如果调用pro2()，就会返回target()。
+        
+        句柄对象的方法可以覆写任意代理的内部方法;
+        
+        如果handler没有设置任何拦截，那就等同于直接通向原对象。
+
+
+        注意：要使得Proxy起作用，必须针对Proxy实例进行操作，
+        而不是针对目标对象进行操作
+         */
+    </script>
 </body>
 </html>
