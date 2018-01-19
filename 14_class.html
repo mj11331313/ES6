@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //  类的实现和继承：
+        
+        //(1).原生js：
+            //1.类的实现（使用function模仿类）：
+                // 属性定义在类里面:
+        function People(name,age){
+            this.name = name;   
+            this.age = age;
+        };
+                // 方法定义在原型下面:
+        People.prototype.showName = function(){  
+            console.log('my name is:'+this.name);
+        };
+        var person1 = new People('zhangsan',21);
+        person1.showName();
+
+            //2.类的继承(基于原型的继承)：
+        function Coder(name,age){
+            People.call(this,name,age); // 继承父类的属性（使用call方法改变this指向）
+        };
+        Coder.prototype = new People(); // 继承父类的方法（使其原型变为父类的一个实例）
+        var person2 = new Coder('lisi',30);
+        person2.showName();
+
+
+
+
+
+        //(2).es6的class关键字：
+            //1.类的实现：
+        class Human{
+            // 属性定义在构造函数里：
+            constructor(name,age){
+                this.name = name;
+                this.age = age;
+            };
+            // 方法直接定义：
+            showName(){
+                console.log('我的名字：'+this.name);
+            }
+        };
+        var h1 = new Human('Cynthia',20);
+        h1.showName();
+
+            //2.类的继承：
+        class Student extends Human{
+            constructor(name,age,school){
+                super(name,age);
+
+                /*如果子类在constructor方法中使用了this初始化实例属性,
+                调用super方法必须放到this初始化实例属性的前面。
+                这是因为子类没有自己的this对象，而是继承父类的this对象，
+                然后对其进行加工。如果不调用super方法，
+                子类就得不到this对象。*/
+
+                this.name = name;
+                this.age = age;
+                this.school = school;
+            };
+            showSchool(){
+                console.log('我的学校：'+this.school);
+            };
+            static foo(){
+                console.log('我是静态方法');
+            }
+        };
+        let s1 = new Student('mary',18,'nefu');
+        s1.showSchool();
+        s1.showName();
+        Student.foo(); // 如果类方法前加上static，就不会被实例继承，而是直接通过类来调用
+
+
+
+        var str = 'abc';
+        console.log(str.indexOf()); // 输出-1
+        var arr = [];
+        arr.push();
+        console.log(arr);   // 输出空数组
+
+
+        // Math.random();
+        // Math.floor();
+    </script>
+</body>
+</html>
