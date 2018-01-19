@@ -7,17 +7,20 @@
     <title>Document</title>
 </head>
 <body>
-<script>
-    //symbol是一种数据类型，表示唯一的
+    <script>
+        /* 
+        es5的数据类型：number string boolean undefined null
+        es6新增的数据类型：symbol 
+        （Symbol类型是保证每个属性的名字都是独一无二的）
+        */
 
-    let name = Symbol();
-    let obj1 = {
-        name:'zhangsan',
-        age:21
-    };
-    obj1[name] = 'lisi';
-    console.log(obj1.name);//输出"zhangsan"，原属性被保护没有被修改
-    console.log(obj1[name]);//获取想要重新赋的值
-</script>
-</body>
-</html>
+        let name = Symbol();
+        let obj = {
+            name: 'lisi',
+            age: 18
+        };
+        obj[name] = 'zhangsan'; // 不能修改name值
+        // console.log(obj[name]);
+        for(let p in obj){  // p => 键名
+            console.log(p,obj[p]);  // name,lisi age:18
+        }
