@@ -7,24 +7,26 @@
     <title>Document</title>
 </head>
 <body>
-<script>
-    var m1 = new Map();
-    m1.set('1','a');//"1"=>"a"
-    m1.set('1','x');//"1"被覆盖成功：map里的key唯一，值可覆盖
-    m1.set('2','b');//"2"=>"b"  key => value
-    let obj = {name:'zs'};
-    m1.set(obj,'c');//对象作为key
-    console.log(m1);//{obj}=>"c"
-    //map可存储任意类型的数据,部分方法与set一致
+    <script>
+        /* 
+        Javascript的Object本身就是键值对的数据结构，
+        但实际上属性和值构成的是“字符串-值”，属性只能是字符串，
+        如果传个对象自变量作为属性名，那么会默认把对象转换成字符串，
+        结果这个属性名就变成“[object Object]”。
 
-    //获取key对应的值：
-    console.log(m1.get('1'));//获取"1"对应的值
+        ES6提供了“值-值”的数据结构，键名不仅可以是字符串，
+        也可以是对象。它是一个更完善的Hash结构。 */
+
+        let m1 = new Map();
+        m1.set('1', 'a');
+        let obj = {name: 'zs'};
+        m1.set(obj, {age: 18}); // 键名=obj 键值={age:18}
+        console.log(m1.get(obj));
 
 
-    //WeakMap:
-    let wm = new WeakMap();
-    wm.set({name:'wm'},'wm');//weakmap只允许对象作为key
-    console.log(wm);
-</script>
+        let wm = new WeakMap(); // 键名必须是一个对象
+        wm.set({name:'zs'}, 'a');
+        console.log(wm);
+    </script>
 </body>
 </html>
