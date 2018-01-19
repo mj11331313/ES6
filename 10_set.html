@@ -7,44 +7,41 @@
     <title>Document</title>
 </head>
 <body>
-<script>
-    let s1 = new Set([1,2,3,1]);
-    console.log(s1);//结果为{1,2,3}：set不允许有重复值
+    <script>
+        let s1 = new Set(['a', 'b', 'c', 1]);
+        console.log(typeof s1); // object
 
-    //可利用set的此种特性给数组去重：
-    let ar1 = [2,3,4,2,3];
-    let s2 = new Set(ar1);//将数组转化为set型
-    console.log(s2);
+        // 数组去重：
+        let arr = [1, 2, 3, 4, 1, 2, 3];
+        let s2 = new Set(arr);  // Set会自动去重
+        console.log(s2);
+
+        s2.add(5);  // 向s2中追加一个元素5
+        console.log(s2);
+
+        s2.delete(3);   // 删除s2中的元素3
+        console.log(s2);
+
+        //s2.clear(); // 清除s2中的所有元素
+        
+        // 判断s1中是否包含元素3：
+        console.log(s2.has(3)); // 返回布尔值
+
+        // 求s2里的元素个数：
+        console.log(s2.size);
+
+        for(let [index,item] of s1.entries()){
+            console.log(`${index}:${item}`);    // index 即 item
+        }
 
 
-    //向set中添加值：
-    s1.add(5);
-    console.log(s1);
+        let ws = new WeakSet();
+        let obj = {name:'zhangsan'};
+        let obj1 = obj;
+        ws.add(obj);
+        ws.add(obj1);
+        console.log(ws);
 
-    //删除值：
-    s1.delete(1);
-    console.log(s1);
-
-
-    //全部删除，即清空：
-    /* s1.clear();
-     console.log(s1); */ //长度(size)变为0
-
-
-    //判断set中是否含有某一个值：
-    console.log(s1.has(5));
-
-
-    //获取set的长度：
-    console.log(s1.size);//长度是size不是length，且size是属性不是方法
-
-    //遍历set：for of 循环：
-    for(let item of s1){
-        console.log(item);//输出值
-    };
-    for( let [index,item] of s1.entries()){
-        console.log(`${index}:${item}`);//set的索引等于其对应值
-    };
-</script>
-</body>
-</html>
+        /* 
+        Set类似于数组，但成员变量的值都是唯一的，没有重复的值。
+        WeakSet也是不重复的值的集合，但是只能用来存放对象 */
